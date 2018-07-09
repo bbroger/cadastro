@@ -27,26 +27,22 @@
 
 		<?php
 			if(isset($_POST['email']) && !empty($_POST['email'])){
-						$email = $_POST['email'];
-						$senha = $_POST['senha'];
-						$id = $banco->logar($email, $senha);
-
-						if($id){
-									$_SESSION['id'] = $id;
-									header("Location: index.php");
-									exit;
-						} else {
-									echo "<div class='alert alert-danger alert-dismissible fade show' 			role='alert'>E-mail e/ou senha invalidos
-											<button class='close' data-dismiss='alert'>
-												<span aria-hidden='true'>&times;</span>
-											</button>
-										</div>";
-
-						}
-					} 
-
+				$email = $_POST['email'];
+				$senha = $_POST['senha'];
+				$id = $banco->logar($email, $senha);
+				if($id){
+						$_SESSION['id'] = $id;
+						header("Location: index.php");
+						exit;
+				} else {
+					echo "<div class='alert alert-danger alert-dismissible fade show' 		role='alert'>E-mail e/ou senha invalidos
+								<button class='close' data-dismiss='alert'>
+									<span aria-hidden='true'>&times;</span>
+								</button>
+								</div>";
+				}
+			} 
 		?>
-
 
 		
 		<div class="row">

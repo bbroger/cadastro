@@ -1,4 +1,8 @@
-.formulario{
+.conteudo{
+	border: 1px solid #dcdcdc;
+	padding:3px;
+}
+.login{
 	background-color: #cccccc;
 	padding: 10px;
 	margin: 10px;
@@ -16,7 +20,7 @@
 
 @media (max-width: 430px){
 
-	.formulario{
+	.login{
 		min-width: 290px;
 	}
 

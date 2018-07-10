@@ -1,16 +1,9 @@
 <?php
 	session_start();
 	unset($_SESSION['id']);
-	require "banco.php";
-
-	$banco = new Banco();
-	$usuarios = array();
-	$usuarios = $banco->listar("usuarios");
-					
+	require "assets/includes/banco.php";
+	$banco = new Banco();				
 ?>
-	
-
-
 
 <!DOCTYPE html>
 <html>
@@ -22,8 +15,10 @@
 	<title>Pagina de Login - Cadastro</title>
 </head>
 <body>
+		
 
 	<div class="container">
+
 
 		<?php
 			if(isset($_POST['email']) && !empty($_POST['email'])){
@@ -49,7 +44,7 @@
 			<div class="col" >
 				<div class="envolve">
 					
-					<div class="formulario">
+					<div class="login">
 						<form method="POST">
 							<div class="form-group">
 								<label for="email"> E-mail:</label>

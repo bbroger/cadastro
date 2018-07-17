@@ -10,7 +10,7 @@
 
 					Logado como : 
 					<?php 
-					$usuario = $banco->buscar("usuarios", $id);
+					$usuario = $banco->buscar("usuarios", $logado);
 					$nome = $usuario['nome'];
 					echo $nome;
 					?>

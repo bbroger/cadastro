@@ -2,9 +2,26 @@
 	session_start();
 	unset($_SESSION['id']);
 	require "assets/includes/banco.php";
-	$banco = new Banco();				
-?>
+	$banco = new Banco();
 
+if(isset($_POST['email']) && !empty($_POST['email'])){
+				$email = $_POST['email'];
+				$senha = $_POST['senha'];
+				$logado = $banco->logar($email, $senha);
+				if($logado){
+						$_SESSION['logado'] = $logado;
+						header("Location: index.php");
+						exit;
+				} else {
+					echo "<div class='alert alert-danger alert-dismissible fade show' 		role='alert'>E-mail e/ou senha invalidos
+								<button class='close' data-dismiss='alert'>
+									<span aria-hidden='true'>&times;</span>
+								</button>
+								</div>";
+				}
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,27 +35,6 @@
 		
 
 	<div class="container">
-
-
-		<?php
-			if(isset($_POST['email']) && !empty($_POST['email'])){
-				$email = $_POST['email'];
-				$senha = $_POST['senha'];
-				$id = $banco->logar($email, $senha);
-				if($id){
-						$_SESSION['id'] = $id;
-						header("Location: index.php");
-						exit;
-				} else {
-					echo "<div class='alert alert-danger alert-dismissible fade show' 		role='alert'>E-mail e/ou senha invalidos
-								<button class='close' data-dismiss='alert'>
-									<span aria-hidden='true'>&times;</span>
-								</button>
-								</div>";
-				}
-			} 
-		?>
-
 		
 		<div class="row">
 			<div class="col" >
@@ -56,22 +52,23 @@
 							</div>
 							<input class="btn btn-primary" type="submit" value="Entrar">
 						</form>
-						
+						<br/>
+						<p>Para testar o sistema use :</p>
+						<strong> E-mail : </strong>admin@admin.com.br<br />
+						<strong>Senha: </strong> admin
 					</div>
+					
 					
 
 				</div>
 
 			</div>
 
+
 		</div>
 
+
 	</div>
-
-
-		
-
-
 		<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
 </body>

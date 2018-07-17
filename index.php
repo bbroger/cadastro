@@ -3,13 +3,13 @@
 	require "assets/includes/banco.php";
 	$banco = new Banco();
 
-	if(!isset($_SESSION['id']) && empty($_SESSION['id'])){
+	if(!isset($_SESSION['logado']) && empty($_SESSION['logado'])){
 		header("Location: login.php");
 	}
+	$logado = $_SESSION['logado'];
 
-	$id = $_SESSION['id'];
-	
 	$clientes = $banco->listar("clientes");
+		
 	
 ?>
 
@@ -28,7 +28,7 @@
 		<?php 
 			include "assets/includes/navbar.php";
 		?>
-		<h2>Cadastro de Clientes</h2>
+		<h2>Cadastro de clientes</h2>
 		<hr/>
 			<div class="conteudo">
 			<div class="table-responsive">
@@ -51,7 +51,7 @@
 										echo "<td>".$cliente['nome']."</td>";
 										echo "<td>".$cliente['email']."</td>";
 										echo "<td>".$cliente['endereco']."</td>";
-										echo "<td><a href='editar.php?id=".$cliente['id']."'>Editar</a> - <a href='excluir.php?id=".$cliente['id']."'>Excluir</a></td>";
+										echo "<td><a href='editar.php?id=".$cliente['id']."'>Editar</a> - <a  href='excluir.php?id=".$cliente['id']."'>Excluir</a></td>";
 										echo "</tr>";
 									}
 								} else {
@@ -65,10 +65,7 @@
 				</table>
 			</div>
 
-
-
-			
-			<a href="adicionar.php" class="btn btn-danger btn-sm ">Adicionar</a>
+			<a href="salvar.php" class="btn btn-danger btn-sm ">Adicionar</a>
 		</div>
 	</div>
 	

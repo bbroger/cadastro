@@ -62,12 +62,23 @@
 			}
 		}
 
-		public function modificar(){
-
+		public function editar($tabela, $data, $id){
+			if(!empty($tabela) && (is_array($data) && count($data) > 0)){
+				$sql = "UPDATE ".$tabela. " SET ";
+				$dados = array();
+				foreach($data as $chave => $valor){
+					$dados[] = $chave. " = '". $valor. "'" ;
+				}
+				$sql = $sql . implode(", ", $dados). " where id= ".$id;
+				$this->conexao->query($sql);
+			}
 		}
 
-		public function deletar(){
-
+		public function deletar($tabela, $id){
+			if(!empty($tabela) && (isset($id))){
+				$sql = "DELETE FROM ".$tabela." WHERE id= ". $id;
+				$this->conexao->query($sql);
+			}
 		}
 
 	}

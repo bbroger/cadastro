@@ -66,7 +66,7 @@
 									}
 									echo "<tr>";
 									echo "<td colspan='5'>";
-									echo "<ul class='pagination'>";
+									echo "<ul class='pagination pagination-sm'>";
 									for($q=0 ; $q < $paginas ; $q++){
 										echo "<li class='page-item'><a class='page-link' href='./?p=".($q + 1)."'> ".($q + 1)." </a></li>";
 									}

@@ -11,9 +11,9 @@
 	$logado = $_SESSION['logado'];
 
 	if(isset($_POST['nome']) && !empty($_POST['nome'])){
-		$nome = $_POST['nome'];
-		$email = $_POST['email'];
-		$endereco = $_POST['endereco'];
+		$nome = addslashes(htmlspecialchars($_POST['nome'])) ;
+		$email = addslashes(htmlspecialchars($_POST['email'])) ;
+		$endereco = addslashes(htmlspecialchars($_POST['endereco'])) ;
 
 		$dados = array(
 			"nome" => "$nome",

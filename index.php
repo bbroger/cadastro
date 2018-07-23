@@ -8,8 +8,18 @@
 	}
 	$logado = $_SESSION['logado'];
 
-	$clientes = $banco->listar("clientes");
-		
+
+	$pg = 1;
+	if(isset($_GET['p']) && !empty($_GET['p'])){
+		$pg = $_GET['p'];
+	}
+
+	//paginação do resultado
+	$clientes_por_pagina = 10;
+	$total_clientes = $banco->contarRegistros();
+	$paginas = $total_clientes / $clientes_por_pagina;
+
+	$clientes = $banco->listar($pg, $clientes_por_pagina);
 	
 ?>
 
@@ -54,15 +64,24 @@
 										echo "<td><a href='editar.php?id=".$cliente['id']."'>Editar</a> - <a  href='excluir.php?id=".$cliente['id']."'>Excluir</a></td>";
 										echo "</tr>";
 									}
+									echo "<tr>";
+									echo "<td colspan='5'>";
+									echo "<ul class='pagination'>";
+									for($q=0 ; $q < $paginas ; $q++){
+										echo "<li class='page-item'><a class='page-link' href='./?p=".($q + 1)."'> ".($q + 1)." </a></li>";
+									}
+									echo "</ul>";
+									echo "</td>";
+									echo "</tr>";
 								} else {
 									echo "<tr>";
-									echo "<td colspan='4'>Nenhum Registro encontrado !</td>";
+									echo "<td colspan='5'>Nenhum Registro encontrado !</td>";
 									echo "</tr>";
-								}
-								
+								}	
 							?>
 					</tbody>
 				</table>
+
 			</div>
 
 			<a href="salvar.php" class="btn btn-danger btn-sm ">Adicionar</a>

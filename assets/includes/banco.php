@@ -6,10 +6,7 @@
 		private $dbsenha = "";
 
 		private $conexao;
-		private $numLinhas;
 		
-		
-
 		public function __construct(){
 			try{
 				$this->conexao = new PDO($this->dsn, $this->dbuser, $this->dbsenha);
@@ -19,9 +16,6 @@
 			}
 		}
 
-		public function query($sql){
-			
-		}
 
 		public function logar($email, $senha){
 			$id = null;
@@ -35,8 +29,18 @@
 			return $id;
 		}
 
-		public function listar($tabela){
-			$sql = "SELECT * FROM ".$tabela;
+		public function contarRegistros (){
+			$sql = "SELECT COUNT(*) as c FROM clientes";
+			$sql = $this->conexao->query($sql);
+			$sql = $sql->fetch();
+			$total = $sql['c'];
+			return $total;
+
+		}
+
+		public function listar($pagina, $limite){
+			$p = ($pagina - 1) * $limite;
+			$sql = "SELECT * FROM clientes LIMIT $p, $limite";
 			$query = $this->conexao->query($sql);
 			$this->numLinhas = $query->rowCount();
 			$resultado = $query->fetchAll();

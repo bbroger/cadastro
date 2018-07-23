@@ -1,4 +1,8 @@
+.table-responsive{
+	min-height: 451px;
+}
 .conteudo{
+	min-height: 452px;
 	border: 1px solid #dcdcdc;
 	padding:3px;
 }
